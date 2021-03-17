@@ -10,9 +10,13 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class ProductsAdapter extends CursorAdapter {
+    Picasso p;
     public ProductsAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
+        p  = new Picasso.Builder(context).build();
     }
 
     @Override
@@ -34,5 +38,6 @@ public class ProductsAdapter extends CursorAdapter {
         tvPrice.setText(Integer.toString(price));
         // image view set picture
         picture.setImageResource(R.drawable.user_unknown);
+        p.load(url).error(R.drawable.no_image).into(picture);
     }
 }
